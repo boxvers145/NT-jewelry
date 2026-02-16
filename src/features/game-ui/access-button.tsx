@@ -11,7 +11,7 @@ interface AccessButtonProps {
 
 export function AccessButton({ className }: AccessButtonProps) {
     return (
-        <Link href="/atelier">
+        <Link href="/game">
             <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}

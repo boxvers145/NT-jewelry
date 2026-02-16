@@ -113,3 +113,78 @@ export interface RarityConfig {
     materialMultiplier: number;
     maxEnchantments: number;
 }
+
+// ─── Equipment ───────────────────────────────────────────
+
+export enum EquipSlot {
+    Head = "head",
+    Necklace = "necklace",
+    RingLeft = "ring_left",
+    RingRight = "ring_right",
+}
+
+export const EQUIP_SLOT_LABELS: Record<EquipSlot, string> = {
+    [EquipSlot.Head]: "Tête",
+    [EquipSlot.Necklace]: "Collier",
+    [EquipSlot.RingLeft]: "Anneau G",
+    [EquipSlot.RingRight]: "Anneau D",
+};
+
+export const EQUIP_SLOT_ICONS: Record<EquipSlot, string> = {
+    [EquipSlot.Head]: "👑",
+    [EquipSlot.Necklace]: "📿",
+    [EquipSlot.RingLeft]: "💍",
+    [EquipSlot.RingRight]: "💍",
+};
+
+/** Maps item base types to their compatible equipment slot(s) */
+export const ITEM_BASE_TO_SLOT: Record<ItemBase, EquipSlot[]> = {
+    [ItemBase.Ring]: [EquipSlot.RingLeft, EquipSlot.RingRight],
+    [ItemBase.Pendant]: [EquipSlot.Necklace],
+    [ItemBase.Bracelet]: [EquipSlot.RingLeft, EquipSlot.RingRight],
+    [ItemBase.Earring]: [EquipSlot.Head],
+    [ItemBase.Brooch]: [EquipSlot.Necklace],
+    [ItemBase.Tiara]: [EquipSlot.Head],
+    [ItemBase.Chain]: [EquipSlot.Necklace],
+};
+
+// ─── Player Stats ────────────────────────────────────────
+
+export interface PlayerStats {
+    force: number;
+    precision: number;
+    chance: number;
+}
+
+// ─── Expedition ──────────────────────────────────────────
+
+export interface ExpeditionZone {
+    id: string;
+    name: string;
+    description: string;
+    difficulty: number;    // 1-10
+    minLevel: number;
+    xpReward: number;
+    /** Material IDs and their drop weights */
+    lootTable: { material: string; weight: number }[];
+    /** Chance of item drop (0-1) */
+    itemDropChance: number;
+    emoji: string;
+}
+
+export type ExpeditionLogType = "info" | "damage" | "loot" | "danger" | "victory" | "defeat";
+
+export interface ExpeditionLogEntry {
+    turn: number;
+    message: string;
+    type: ExpeditionLogType;
+}
+
+export interface ExpeditionResult {
+    success: boolean;
+    logs: ExpeditionLogEntry[];
+    resourcesGained: Record<string, number>;
+    itemsGained: GameItem[];
+    xpGained: number;
+    goldGained: number;
+}

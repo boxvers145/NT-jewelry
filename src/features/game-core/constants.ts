@@ -2,6 +2,8 @@ import {
     type RarityConfig,
     type Enchantment,
     type Recipe,
+    type ExpeditionZone,
+    type PlayerStats,
     Rarity,
     Material,
     Gem,
@@ -96,4 +98,128 @@ export const DEFAULT_RECIPES: Recipe[] = [
     { id: "r006", name: "Diadème de Mithril", base: ItemBase.Tiara, requiredMaterial: Material.Mithril, requiredGem: Gem.Diamond, minLevel: 18, baseCost: 1200 },
     { id: "r007", name: "Chaîne d'Adamantite", base: ItemBase.Chain, requiredMaterial: Material.Adamantite, requiredGem: Gem.VoidSapphire, minLevel: 25, baseCost: 2500 },
     { id: "r008", name: "Anneau Stellaire", base: ItemBase.Ring, requiredMaterial: Material.Stardust, requiredGem: Gem.DragonEye, minLevel: 30, baseCost: 5000 },
+];
+
+// ─── Player Defaults ─────────────────────────────────────
+
+export const BASE_PLAYER_STATS: PlayerStats = {
+    force: 5,
+    precision: 5,
+    chance: 5,
+};
+
+/** XP needed to reach each level (index = level) */
+export const XP_TABLE: number[] = [
+    0,     // Level 0 (unused)
+    0,     // Level 1 (start)
+    100,   // Level 2
+    250,   // Level 3
+    500,   // Level 4
+    800,   // Level 5
+    1200,  // Level 6
+    1700,  // Level 7
+    2400,  // Level 8
+    3200,  // Level 9
+    4200,  // Level 10
+    5500,  // Level 11
+    7000,  // Level 12
+    9000,  // Level 13
+    11500, // Level 14
+    14500, // Level 15
+    18000, // Level 16
+    22000, // Level 17
+    27000, // Level 18
+    33000, // Level 19
+    40000, // Level 20
+    50000, // Level 21+
+];
+
+/** NPC buys items at 30% of gold value */
+export const NPC_SELL_MULTIPLIER = 0.3;
+
+// ─── Expedition Zones ────────────────────────────────────
+
+export const EXPEDITION_ZONES: ExpeditionZone[] = [
+    {
+        id: "copper_mines",
+        name: "Mines de Cuivre",
+        description: "Des galeries abandonnées où les gobelins rôdent. Idéal pour débuter.",
+        difficulty: 2,
+        minLevel: 1,
+        xpReward: 30,
+        lootTable: [
+            { material: "Fer", weight: 50 },
+            { material: "Quartz", weight: 30 },
+            { material: "Argent", weight: 15 },
+        ],
+        itemDropChance: 0.15,
+        emoji: "⛏️",
+    },
+    {
+        id: "ancient_forest",
+        name: "Forêt Ancienne",
+        description: "Un bois millénaire où les esprits protègent des gemmes oubliées.",
+        difficulty: 4,
+        minLevel: 3,
+        xpReward: 60,
+        lootTable: [
+            { material: "Argent", weight: 35 },
+            { material: "Améthyste", weight: 30 },
+            { material: "Or", weight: 20 },
+            { material: "Rubis", weight: 10 },
+        ],
+        itemDropChance: 0.2,
+        emoji: "🌲",
+    },
+    {
+        id: "forgotten_sanctuary",
+        name: "Sanctuaire Oublié",
+        description: "Les ruines d'un temple ancien abritent des trésors maudits.",
+        difficulty: 6,
+        minLevel: 6,
+        xpReward: 100,
+        lootTable: [
+            { material: "Or", weight: 30 },
+            { material: "Rubis", weight: 25 },
+            { material: "Saphir", weight: 20 },
+            { material: "Émeraude", weight: 15 },
+            { material: "Platine", weight: 10 },
+        ],
+        itemDropChance: 0.25,
+        emoji: "🏛️",
+    },
+    {
+        id: "dragon_peak",
+        name: "Pic du Dragon",
+        description: "Le sommet brûlant où seuls les plus braves osent s'aventurer.",
+        difficulty: 8,
+        minLevel: 10,
+        xpReward: 180,
+        lootTable: [
+            { material: "Platine", weight: 25 },
+            { material: "Diamant", weight: 20 },
+            { material: "Orichalque", weight: 20 },
+            { material: "Mithril", weight: 15 },
+            { material: "Saphir du Vide", weight: 10 },
+        ],
+        itemDropChance: 0.3,
+        emoji: "🐉",
+    },
+    {
+        id: "void_abyss",
+        name: "Abîme du Néant",
+        description: "Au-delà de la réalité. Les matériaux les plus rares y dorment.",
+        difficulty: 10,
+        minLevel: 15,
+        xpReward: 300,
+        lootTable: [
+            { material: "Mithril", weight: 25 },
+            { material: "Adamantite", weight: 25 },
+            { material: "Opale du Phénix", weight: 15 },
+            { material: "Œil de Dragon", weight: 10 },
+            { material: "Poussière d'Étoile", weight: 5 },
+        ],
+        itemDropChance: 0.35,
+        emoji: "🕳️",
+    },
 ];

@@ -9,10 +9,11 @@ import {
     Material,
     Gem,
     ItemBase,
-    Recipe
+    Recipe,
+    useGameStore,
 } from "@/features/game-core";
 import { ItemCard } from "./item-card";
-import { Hammer, Sparkles, ChevronRight, RotateCcw } from "lucide-react";
+import { Hammer, Sparkles, ChevronRight, RotateCcw, PackagePlus } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/utils";
 import { toast } from "sonner";
@@ -20,6 +21,7 @@ import { useConfetti } from "@/shared/hooks/use-confetti";
 
 export function CraftingInterface() {
     const { triggerConfetti } = useConfetti();
+    const { addToInventory, addXP, playerLevel } = useGameStore();
     const [step, setStep] = useState<"select" | "forging" | "reveal">("select");
     const [selectedRecipe, setSelectedRecipe] = useState<Recipe>(DEFAULT_RECIPES[0]);
     const [lastItem, setLastItem] = useState<GameItem | null>(null);
@@ -28,7 +30,7 @@ export function CraftingInterface() {
     const handleForge = () => {
         setStep("forging");
         setTimeout(() => {
-            const item = generateItem(selectedRecipe, 5); // Level 5 for demo
+            const item = generateItem(selectedRecipe, playerLevel);
             setLastItem(item);
             setStep("reveal");
             triggerConfetti();
@@ -147,16 +149,17 @@ export function CraftingInterface() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ type: "spring", bounce: 0.5 }}
-                        className="flex flex-col items-center space-y-8"
+                        className="flex flex-col items-center max-h-[75vh] overflow-y-auto custom-scrollbar px-2"
                     >
                         <motion.div
                             initial={{ y: 50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.2 }}
+                            className="mb-6"
                         >
                             <div className="relative">
                                 <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full" />
-                                <ItemCard item={lastItem} isNew={true} className="scale-125" />
+                                <ItemCard item={lastItem} isNew={true} className="scale-110" />
                             </div>
                         </motion.div>
 
@@ -164,14 +167,23 @@ export function CraftingInterface() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
-                            className="flex gap-4"
+                            className="flex flex-col gap-3 w-full max-w-xs"
                         >
-                            <Button onClick={reset} variant="outline" className="gap-2">
+                            <Button
+                                onClick={() => {
+                                    addToInventory(lastItem);
+                                    addXP(15);
+                                    toast.success("Ajouté à l'inventaire !");
+                                    reset();
+                                }}
+                                className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+                            >
+                                <PackagePlus className="w-4 h-4" />
+                                <span className="font-bold">Ajouter à l'inventaire</span>
+                            </Button>
+                            <Button onClick={reset} variant="outline" className="w-full gap-2">
                                 <RotateCcw className="w-4 h-4" />
                                 Forger encore
-                            </Button>
-                            <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-                                <span className="font-bold">Ajouter à l'inventaire</span>
                             </Button>
                         </motion.div>
                     </motion.div>
