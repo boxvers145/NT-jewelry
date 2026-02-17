@@ -3,6 +3,7 @@ import { Playfair_Display, Montserrat } from "next/font/google";
 import { Toaster } from "sonner";
 import { BottomBar } from "@/features/navigation/bottom-bar";
 import { DesktopHeader } from "@/features/navigation/desktop-header";
+import { PWAInstallPrompt } from "@/components/pwa/InstallPrompt";
 import "./globals.css";
 import { cn } from "@/shared/lib/utils";
 
@@ -21,6 +22,14 @@ export const metadata: Metadata = {
   description:
     "Haute Joaillerie Contemporaine. Une expérience immersive entre luxe et culture pop.",
   manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "NT Jewelry",
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
 };
 
 export const viewport: Viewport = {
@@ -50,6 +59,7 @@ export default function RootLayout({
           {children}
         </main>
         <BottomBar />
+        <PWAInstallPrompt />
         <Toaster position="top-center" richColors theme="dark" />
       </body>
     </html>
