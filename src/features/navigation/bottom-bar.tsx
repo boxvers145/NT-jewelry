@@ -1,20 +1,21 @@
 "use client";
 
 import { Home, Search, ShoppingBag, User } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/shared/lib/utils";
 import { AccessButton } from "@/features/game-ui/access-button";
+import { useTranslations } from "next-intl";
 
 export function BottomBar() {
     const pathname = usePathname();
+    const t = useTranslations("nav");
 
     const links = [
-        { href: "/", icon: Home, label: "Accueil" },
-        { href: "/catalog", icon: Search, label: "Explorer" },
-        { href: "/cart", icon: ShoppingBag, label: "Panier" },
-        { href: "/profile", icon: User, label: "Profil" },
+        { href: "/" as const, icon: Home, label: t("home") },
+        { href: "/catalog" as const, icon: Search, label: t("explore") },
+        { href: "/cart" as const, icon: ShoppingBag, label: t("cart") },
+        { href: "/profile" as const, icon: User, label: t("profile") },
     ];
 
     return (

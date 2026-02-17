@@ -1,0 +1,134 @@
+{
+    "hero": {
+        "title": "Level Up Your Style",
+        "subtitle": "Premium jewelry for the modern gamer. Crafted with precision, worn with pride.",
+        "cta": "Explore Collection",
+        "about": "About Us"
+    },
+    "nav": {
+        "home": "Home",
+        "explore": "Explore",
+        "cart": "Cart",
+        "profile": "Profile",
+        "collections": "COLLECTIONS",
+        "maison": "THE HOUSE",
+        "backToSite": "Back to site"
+    },
+    "common": {
+        "welcome": "Welcome to NT Jewelry!",
+        "welcomeDesc": "Experience luxury gaming interactions."
+    },
+    "catalog": {
+        "title": "Collections",
+        "subtitle": "Every piece is handcrafted, inspired by the worlds you love.",
+        "search": "Search for a piece...",
+        "noResults": "No pieces found.",
+        "resetFilters": "Reset filters",
+        "categories": {
+            "all": "All",
+            "rings": "Rings",
+            "necklaces": "Necklaces",
+            "bracelets": "Bracelets",
+            "earrings": "Earrings",
+            "limited": "Limited Editions"
+        },
+        "tags": {
+            "new": "New",
+            "limited": "Limited Edition",
+            "bestseller": "Bestseller"
+        }
+    },
+    "product": {
+        "backToCollections": "Back to collections",
+        "addToCart": "Add to Cart",
+        "photoSoon": "Photo coming soon",
+        "badges": {
+            "authentic": "Authentic",
+            "freeShipping": "Free shipping",
+            "return30": "30-day return"
+        }
+    },
+    "cartPage": {
+        "title": "Your Collection",
+        "itemCount": "{count, plural, one {# item selected} other {# items selected}}",
+        "removeAll": "Remove all",
+        "emptyTitle": "Your collection is empty",
+        "emptyDesc": "Explore our collections to find the piece that suits you.",
+        "discoverBtn": "Discover Collections",
+        "subtotal": "Subtotal",
+        "shipping": "Shipping",
+        "shippingFree": "Free",
+        "total": "Total",
+        "checkout": "Proceed to Checkout",
+        "cartCleared": "Cart cleared",
+        "itemRemoved": "\"{name}\" removed"
+    },
+    "profilePage": {
+        "visitor": "Visitor",
+        "memberSince": "Member since February 2025",
+        "edit": "Edit",
+        "orders": "Orders",
+        "favorites": "Favorites",
+        "loyaltyPoints": "Loyalty points",
+        "myOrders": "My Orders",
+        "wishlist": "My Wishlist",
+        "settings": "Settings",
+        "recentOrders": "Recent orders",
+        "logout": "Log out"
+    },
+    "maison": {
+        "label": "The House",
+        "heroTitle1": "Where luxury",
+        "heroTitle2": "meets imagination",
+        "heroDesc": "NT Jewelry was born from the conviction that fine jewelry can tell the stories of our time — those of virtual worlds that became legendary.",
+        "values": {
+            "v1Title": "Exceptional Craftsmanship",
+            "v1Desc": "Each piece is handcrafted by our master artisans, heirs to centuries-old expertise reinvented for a new generation.",
+            "v2Title": "Imaginative Inspiration",
+            "v2Desc": "Our collections draw from the mythologies of video games, cinema, and anime — transformed into tangible, precious art objects.",
+            "v3Title": "Programmed Rarity",
+            "v3Desc": "Our limited editions are numbered and certified. Owning an NT piece means holding a fragment of an exclusive universe."
+        },
+        "quote": "A jewel should not merely adorn. It should tell who you are, the worlds you've traversed, the battles you've fought.",
+        "quoteAuthor": "— Founder, NT Jewelry",
+        "historyTitle": "Our Story",
+        "timeline": {
+            "t1": "Birth of the NT Jewelry vision",
+            "t2": "First collection 'Genesis' — 12 unique pieces",
+            "t3": "Opening of the Parisian atelier",
+            "t4": "Launch of the Digital Écrin"
+        }
+    },
+    "game": {
+        "adventure": "The Adventure",
+        "character": "Character",
+        "inventory": "Inventory"
+    },
+    "crafting": {
+        "title": "The Creation Workshop",
+        "subtitle": "Select a recipe to forge your destiny.",
+        "cost": "Cost: {cost} G",
+        "forgeBtn": "FORGE THE ITEM",
+        "forgeFail": "Forging failed!",
+        "forgeFailDesc": "The timing was off. Your materials are lost.",
+        "perfectHit": "PERFECT HIT!",
+        "perfectHitDesc": "Quality is guaranteed Legendary or higher!",
+        "addedToInventory": "Added to inventory!"
+    },
+    "forge": {
+        "title": "The Forge",
+        "readyHint": "Press SPACE or tap to start",
+        "runningHint": "Stop the cursor in the golden zone!",
+        "targetZone": "Target Zone",
+        "perfect": "PERFECT!",
+        "success": "SUCCESS",
+        "fail": "MISSED...",
+        "spaceKey": "SPACE",
+        "orTouch": "or tap the screen"
+    },
+    "lootReveal": {
+        "tapToReveal": "Tap to reveal",
+        "addToInventory": "Add to inventory",
+        "forgeAgain": "Forge again"
+    }
+}

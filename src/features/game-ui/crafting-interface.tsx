@@ -6,38 +6,58 @@ import {
     DEFAULT_RECIPES,
     generateItem,
     GameItem,
-    Material,
-    Gem,
-    ItemBase,
+    Rarity,
     Recipe,
     useGameStore,
 } from "@/features/game-core";
-import { ItemCard } from "./item-card";
-import { Hammer, Sparkles, ChevronRight, RotateCcw, PackagePlus } from "lucide-react";
+import { ForgeMinigame, type ForgeResult } from "./forge-minigame";
+import { LootReveal } from "./loot-reveal";
+import { Hammer, Sparkles, ChevronRight } from "lucide-react";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/utils";
 import { toast } from "sonner";
-import { useConfetti } from "@/shared/hooks/use-confetti";
+import { useTranslations } from "next-intl";
+import { playSFX } from "@/shared/lib/sfx";
 
 export function CraftingInterface() {
-    const { triggerConfetti } = useConfetti();
     const { addToInventory, addXP, playerLevel } = useGameStore();
-    const [step, setStep] = useState<"select" | "forging" | "reveal">("select");
+    const t = useTranslations("crafting");
+    const [step, setStep] = useState<"select" | "qte" | "reveal">("select");
     const [selectedRecipe, setSelectedRecipe] = useState<Recipe>(DEFAULT_RECIPES[0]);
     const [lastItem, setLastItem] = useState<GameItem | null>(null);
 
-    // Fake processing delay
-    const handleForge = () => {
-        setStep("forging");
-        setTimeout(() => {
-            const item = generateItem(selectedRecipe, playerLevel);
-            setLastItem(item);
-            setStep("reveal");
-            triggerConfetti();
-            toast.success("Création réussie !", {
-                description: `Vous avez forgé : ${item.name}`,
+    // ── QTE result handler ──
+    const handleQTEResult = (result: ForgeResult) => {
+        if (result === "fail") {
+            playSFX("fail");
+            toast.error(t("forgeFail"), {
+                description: t("forgeFailDesc"),
             });
-        }, 2500);
+            setStep("select");
+            return;
+        }
+
+        // Generate item — perfect hit forces Legendary+
+        const options =
+            result === "perfect" ? { forceMinRarity: Rarity.Legendary } : undefined;
+        const item = generateItem(selectedRecipe, playerLevel, options);
+        setLastItem(item);
+        setStep("reveal");
+
+        if (result === "perfect") {
+            toast.success(t("perfectHit"), {
+                description: t("perfectHitDesc"),
+            });
+        }
+    };
+
+    const handleCollect = () => {
+        if (lastItem) {
+            addToInventory(lastItem);
+            addXP(15);
+            toast.success(t("addedToInventory"));
+        }
+        reset();
     };
 
     const reset = () => {
@@ -49,7 +69,7 @@ export function CraftingInterface() {
         <div className="w-full max-w-4xl mx-auto min-h-[600px] flex flex-col items-center justify-center p-4">
             <AnimatePresence mode="wait">
 
-                {/* STEP 1: SELECTION */}
+                {/* ── STEP 1: RECIPE SELECTION ── */}
                 {step === "select" && (
                     <motion.div
                         key="select"
@@ -59,8 +79,8 @@ export function CraftingInterface() {
                         className="w-full space-y-8"
                     >
                         <div className="text-center space-y-2">
-                            <h2 className="text-3xl font-serif font-bold text-foreground">L'Atelier de Création</h2>
-                            <p className="text-muted-foreground">Sélectionnez une recette pour forger votre destin.</p>
+                            <h2 className="text-3xl font-serif font-bold text-foreground">{t("title")}</h2>
+                            <p className="text-muted-foreground">{t("subtitle")}</p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -98,18 +118,18 @@ export function CraftingInterface() {
                                     </div>
                                     <div className="space-y-1">
                                         <h3 className="font-serif text-xl">{selectedRecipe.name}</h3>
-                                        <p className="text-sm text-primary font-bold">Coût: {selectedRecipe.baseCost} G</p>
+                                        <p className="text-sm text-primary font-bold">{t("cost", { cost: selectedRecipe.baseCost })}</p>
                                     </div>
                                 </div>
 
                                 <Button
                                     size="lg"
-                                    onClick={handleForge}
+                                    onClick={() => setStep("qte")}
                                     className="w-full text-lg h-14 relative overflow-hidden group"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         <Sparkles className="w-5 h-5" />
-                                        FORGER L'OBJET
+                                        {t("forgeBtn")}
                                     </span>
                                     <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                                 </Button>
@@ -118,75 +138,27 @@ export function CraftingInterface() {
                     </motion.div>
                 )}
 
-                {/* STEP 2: FORGING ANIMATION */}
-                {step === "forging" && (
+                {/* ── STEP 2: QTE MINIGAME ── */}
+                {step === "qte" && (
                     <motion.div
-                        key="forging"
+                        key="qte"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-col items-center justify-center space-y-8"
+                        className="w-full"
                     >
-                        <div className="relative w-32 h-32">
-                            <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                className="w-full h-full border-4 border-t-primary border-r-transparent border-b-primary border-l-transparent rounded-full"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <Hammer className="w-12 h-12 text-primary animate-bounce" />
-                            </div>
-                        </div>
-                        <h3 className="text-2xl font-serif animate-pulse">Fusion des matériaux...</h3>
+                        <ForgeMinigame onResult={handleQTEResult} />
                     </motion.div>
                 )}
 
-                {/* STEP 3: REVEAL */}
+                {/* ── STEP 3: LOOT REVEAL ── */}
                 {step === "reveal" && lastItem && (
-                    <motion.div
+                    <LootReveal
                         key="reveal"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ type: "spring", bounce: 0.5 }}
-                        className="flex flex-col items-center max-h-[75vh] overflow-y-auto custom-scrollbar px-2"
-                    >
-                        <motion.div
-                            initial={{ y: 50, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="mb-6"
-                        >
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full" />
-                                <ItemCard item={lastItem} isNew={true} className="scale-110" />
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.8 }}
-                            className="flex flex-col gap-3 w-full max-w-xs"
-                        >
-                            <Button
-                                onClick={() => {
-                                    addToInventory(lastItem);
-                                    addXP(15);
-                                    toast.success("Ajouté à l'inventaire !");
-                                    reset();
-                                }}
-                                className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
-                            >
-                                <PackagePlus className="w-4 h-4" />
-                                <span className="font-bold">Ajouter à l'inventaire</span>
-                            </Button>
-                            <Button onClick={reset} variant="outline" className="w-full gap-2">
-                                <RotateCcw className="w-4 h-4" />
-                                Forger encore
-                            </Button>
-                        </motion.div>
-                    </motion.div>
+                        item={lastItem}
+                        onCollect={handleCollect}
+                        onForgeAgain={reset}
+                    />
                 )}
 
             </AnimatePresence>

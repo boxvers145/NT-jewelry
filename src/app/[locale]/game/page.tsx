@@ -1,13 +1,16 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Gem } from "lucide-react";
 import { CharacterPanel } from "@/features/game-ui/character-panel";
 import { MainView } from "@/features/game-ui/main-view";
 import { InventoryPanel } from "@/features/game-ui/inventory-panel";
+import { useTranslations } from "next-intl";
 
 export default function GamePage() {
+    const t = useTranslations("nav");
+    const tg = useTranslations("game");
     return (
         <div className="relative z-10 h-full flex flex-col">
             {/* Top Bar */}
@@ -17,13 +20,13 @@ export default function GamePage() {
                     className="flex items-center gap-2 text-white/40 hover:text-[#C4A484] transition-colors text-sm"
                 >
                     <ArrowLeft className="w-4 h-4" />
-                    <span className="hidden sm:inline">Retour au site</span>
+                    <span className="hidden sm:inline">{t("backToSite")}</span>
                 </Link>
 
                 <div className="flex items-center gap-2">
                     <Gem className="w-5 h-5 text-[#C4A484]" />
                     <h1 className="font-serif text-lg text-[#C4A484] tracking-wide">
-                        NT <span className="text-white/80">Jewelry</span> — L'Aventure
+                        NT <span className="text-white/80">Jewelry</span> — {tg("adventure")}
                     </h1>
                 </div>
 
@@ -56,10 +59,11 @@ export default function GamePage() {
 
 // Mobile toggle for Character/Inventory panels
 function MobileDrawers() {
+    const tg = useTranslations("game");
     return (
         <div className="lg:hidden flex border-t border-[#C4A484]/10 bg-black/30 backdrop-blur-sm">
-            <MobileTab label="Personnage" panel="character" />
-            <MobileTab label="Inventaire" panel="inventory" />
+            <MobileTab label={tg("character")} panel="character" />
+            <MobileTab label={tg("inventory")} panel="inventory" />
         </div>
     );
 }

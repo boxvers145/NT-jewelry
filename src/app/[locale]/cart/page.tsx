@@ -5,11 +5,13 @@ import { PageTransition } from "@/shared/lib/page-transition";
 import { Button } from "@/shared/ui/button";
 import { useCartStore } from "@/features/cart/store";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export default function CartPage() {
     const { items, removeItem, updateQuantity, totalPrice, clearCart } = useCartStore();
+    const t = useTranslations("cartPage");
 
     return (
         <PageTransition>
@@ -18,17 +20,17 @@ export default function CartPage() {
                     {/* Header */}
                     <div className="flex items-end justify-between">
                         <div className="space-y-1">
-                            <h1 className="text-3xl md:text-4xl font-serif font-bold">Votre Écrin</h1>
+                            <h1 className="text-3xl md:text-4xl font-serif font-bold">{t("title")}</h1>
                             <p className="text-muted-foreground text-sm">
-                                {items.length} {items.length > 1 ? "pièces sélectionnées" : "pièce sélectionnée"}
+                                {t("itemCount", { count: items.length })}
                             </p>
                         </div>
                         {items.length > 0 && (
                             <button
-                                onClick={() => { clearCart(); toast("Panier vidé"); }}
+                                onClick={() => { clearCart(); toast(t("cartCleared")); }}
                                 className="text-xs text-muted-foreground hover:text-destructive transition-colors"
                             >
-                                Tout supprimer
+                                {t("removeAll")}
                             </button>
                         )}
                     </div>
@@ -44,13 +46,13 @@ export default function CartPage() {
                                 <ShoppingBag className="w-8 h-8 text-muted-foreground" />
                             </div>
                             <div className="space-y-2">
-                                <h2 className="text-xl font-serif text-foreground">Votre écrin est vide</h2>
+                                <h2 className="text-xl font-serif text-foreground">{t("emptyTitle")}</h2>
                                 <p className="text-muted-foreground text-sm max-w-sm">
-                                    Explorez nos collections pour trouver la pièce qui vous correspond.
+                                    {t("emptyDesc")}
                                 </p>
                             </div>
                             <Link href="/catalog">
-                                <Button>Découvrir les Collections</Button>
+                                <Button>{t("discoverBtn")}</Button>
                             </Link>
                         </motion.div>
                     ) : (
@@ -103,7 +105,7 @@ export default function CartPage() {
 
                                                     {/* Remove */}
                                                     <button
-                                                        onClick={() => { removeItem(item.id); toast(`"${item.name}" retiré`); }}
+                                                        onClick={() => { removeItem(item.id); toast(t("itemRemoved", { name: item.name })); }}
                                                         className="p-2 text-muted-foreground hover:text-destructive transition-colors"
                                                     >
                                                         <Trash2 className="w-4 h-4" />
@@ -121,20 +123,20 @@ export default function CartPage() {
                                 className="p-6 bg-card rounded-lg border border-white/5 space-y-4"
                             >
                                 <div className="flex justify-between text-sm text-muted-foreground">
-                                    <span>Sous-total</span>
+                                    <span>{t("subtotal")}</span>
                                     <span>{totalPrice().toLocaleString("fr-FR")} €</span>
                                 </div>
                                 <div className="flex justify-between text-sm text-muted-foreground">
-                                    <span>Livraison</span>
-                                    <span className="text-primary">Offerte</span>
+                                    <span>{t("shipping")}</span>
+                                    <span className="text-primary">{t("shippingFree")}</span>
                                 </div>
                                 <div className="h-px bg-border" />
                                 <div className="flex justify-between text-lg font-serif font-bold">
-                                    <span>Total</span>
+                                    <span>{t("total")}</span>
                                     <span className="text-primary">{totalPrice().toLocaleString("fr-FR")} €</span>
                                 </div>
                                 <Button size="lg" className="w-full text-base mt-2">
-                                    Procéder au Paiement
+                                    {t("checkout")}
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             </motion.div>

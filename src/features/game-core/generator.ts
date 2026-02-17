@@ -4,7 +4,7 @@ import {
     type Enchantment,
     Rarity,
 } from "./types";
-import { rollRarity, meetsMinRarity } from "./rarity";
+import { rollRarity, meetsMinRarity, rarityIndex } from "./rarity";
 import {
     MATERIAL_VALUES,
     GEM_VALUES,
@@ -182,9 +182,23 @@ function aggregateStats(enchantments: Enchantment[]): Record<string, number> {
  * console.log(item.goldValue); // 342
  * ```
  */
-export function generateItem(recipe: Recipe, playerLevel: number): GameItem {
-    // Step 1: Roll rarity
-    const rarityConfig = rollRarity(playerLevel);
+export function generateItem(
+    recipe: Recipe,
+    playerLevel: number,
+    options?: { forceMinRarity?: Rarity }
+): GameItem {
+    // Step 1: Roll rarity (with optional minimum override)
+    let rarityConfig = rollRarity(playerLevel);
+    if (options?.forceMinRarity) {
+        let attempts = 0;
+        while (
+            rarityIndex(rarityConfig.rarity) < rarityIndex(options.forceMinRarity) &&
+            attempts < 50
+        ) {
+            rarityConfig = rollRarity(playerLevel);
+            attempts++;
+        }
+    }
 
     // Step 2: Roll enchantments
     const enchantments = rollEnchantments(

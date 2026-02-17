@@ -12,20 +12,23 @@ import {
     ChevronRight,
     Crown,
 } from "lucide-react";
-import Link from "next/link";
-
-const MENU_ITEMS = [
-    { icon: Package, label: "Mes Commandes", href: "#", badge: "2" },
-    { icon: Heart, label: "Ma Liste de Souhaits", href: "#", badge: null },
-    { icon: Settings, label: "Paramètres", href: "#", badge: null },
-];
-
-const ORDERS = [
-    { id: "NT-2025-0042", date: "12 Fév 2025", status: "En cours", item: "Anneau du Néant", price: "890 €" },
-    { id: "NT-2025-0038", date: "28 Jan 2025", status: "Livré", item: "Collier Astral", price: "1,450 €" },
-];
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function ProfilePage() {
+    const t = useTranslations("profilePage");
+
+    const MENU_ITEMS = [
+        { icon: Package, label: t("myOrders"), href: "#" as const, badge: "2" },
+        { icon: Heart, label: t("wishlist"), href: "#" as const, badge: null },
+        { icon: Settings, label: t("settings"), href: "#" as const, badge: null },
+    ];
+
+    const ORDERS = [
+        { id: "NT-2025-0042", date: "12 Fév 2025", status: "En cours", item: "Anneau du Néant", price: "890 €" },
+        { id: "NT-2025-0038", date: "28 Jan 2025", status: "Livré", item: "Collier Astral", price: "1,450 €" },
+    ];
+
     return (
         <PageTransition>
             <div className="min-h-screen container mx-auto px-4 pt-24 md:pt-12 pb-12">
@@ -41,13 +44,13 @@ export default function ProfilePage() {
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                                <h1 className="text-xl md:text-2xl font-serif font-bold truncate">Visiteur</h1>
+                                <h1 className="text-xl md:text-2xl font-serif font-bold truncate">{t("visitor")}</h1>
                                 <Crown className="w-4 h-4 text-primary flex-shrink-0" />
                             </div>
-                            <p className="text-muted-foreground text-sm">Membre depuis Février 2025</p>
+                            <p className="text-muted-foreground text-sm">{t("memberSince")}</p>
                         </div>
                         <Button variant="outline" size="sm" className="hidden md:flex">
-                            Éditer
+                            {t("edit")}
                         </Button>
                     </motion.div>
 
@@ -59,9 +62,9 @@ export default function ProfilePage() {
                         className="grid grid-cols-3 gap-3"
                     >
                         {[
-                            { label: "Commandes", value: "2" },
-                            { label: "Favoris", value: "5" },
-                            { label: "Points fidélité", value: "340" },
+                            { label: t("orders"), value: "2" },
+                            { label: t("favorites"), value: "5" },
+                            { label: t("loyaltyPoints"), value: "340" },
                         ].map((stat, i) => (
                             <div key={i} className="text-center p-4 bg-card rounded-lg border border-white/5">
                                 <p className="text-2xl font-serif font-bold text-primary">{stat.value}</p>
@@ -104,7 +107,7 @@ export default function ProfilePage() {
                         transition={{ delay: 0.3 }}
                         className="space-y-4"
                     >
-                        <h2 className="font-serif text-lg font-bold">Commandes récentes</h2>
+                        <h2 className="font-serif text-lg font-bold">{t("recentOrders")}</h2>
                         <div className="space-y-3">
                             {ORDERS.map((order, i) => (
                                 <motion.div
@@ -142,7 +145,7 @@ export default function ProfilePage() {
                     >
                         <button className="flex items-center gap-3 text-sm text-muted-foreground hover:text-destructive transition-colors p-4 w-full">
                             <LogOut className="w-4 h-4" />
-                            Se déconnecter
+                            {t("logout")}
                         </button>
                     </motion.div>
                 </div>

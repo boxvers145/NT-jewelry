@@ -1,0 +1,134 @@
+{
+    "hero": {
+        "title": "Élevez Votre Style",
+        "subtitle": "Joaillerie premium pour le gamer moderne. Forgée avec précision, portée avec fierté.",
+        "cta": "Explorer la Collection",
+        "about": "À Propos"
+    },
+    "nav": {
+        "home": "Accueil",
+        "explore": "Explorer",
+        "cart": "Panier",
+        "profile": "Profil",
+        "collections": "COLLECTIONS",
+        "maison": "LA MAISON",
+        "backToSite": "Retour au site"
+    },
+    "common": {
+        "welcome": "Bienvenue sur NT Jewelry !",
+        "welcomeDesc": "Vivez une expérience de luxe interactive."
+    },
+    "catalog": {
+        "title": "Collections",
+        "subtitle": "Chaque pièce est forgée à la main, inspirée par les univers que vous aimez.",
+        "search": "Rechercher une pièce...",
+        "noResults": "Aucune pièce trouvée.",
+        "resetFilters": "Réinitialiser les filtres",
+        "categories": {
+            "all": "Toutes",
+            "rings": "Bagues",
+            "necklaces": "Colliers",
+            "bracelets": "Bracelets",
+            "earrings": "Boucles",
+            "limited": "Éditions Limitées"
+        },
+        "tags": {
+            "new": "Nouveau",
+            "limited": "Édition Limitée",
+            "bestseller": "Bestseller"
+        }
+    },
+    "product": {
+        "backToCollections": "Retour aux collections",
+        "addToCart": "Ajouter au Panier",
+        "photoSoon": "Photo à venir",
+        "badges": {
+            "authentic": "Authentique",
+            "freeShipping": "Livraison offerte",
+            "return30": "Retour 30j"
+        }
+    },
+    "cartPage": {
+        "title": "Votre Écrin",
+        "itemCount": "{count, plural, one {# pièce sélectionnée} other {# pièces sélectionnées}}",
+        "removeAll": "Tout supprimer",
+        "emptyTitle": "Votre écrin est vide",
+        "emptyDesc": "Explorez nos collections pour trouver la pièce qui vous correspond.",
+        "discoverBtn": "Découvrir les Collections",
+        "subtotal": "Sous-total",
+        "shipping": "Livraison",
+        "shippingFree": "Offerte",
+        "total": "Total",
+        "checkout": "Procéder au Paiement",
+        "cartCleared": "Panier vidé",
+        "itemRemoved": "\"{name}\" retiré"
+    },
+    "profilePage": {
+        "visitor": "Visiteur",
+        "memberSince": "Membre depuis Février 2025",
+        "edit": "Éditer",
+        "orders": "Commandes",
+        "favorites": "Favoris",
+        "loyaltyPoints": "Points fidélité",
+        "myOrders": "Mes Commandes",
+        "wishlist": "Ma Liste de Souhaits",
+        "settings": "Paramètres",
+        "recentOrders": "Commandes récentes",
+        "logout": "Se déconnecter"
+    },
+    "maison": {
+        "label": "La Maison",
+        "heroTitle1": "Là où le luxe",
+        "heroTitle2": "rencontre l'imaginaire",
+        "heroDesc": "NT Jewelry est née de la conviction que la haute joaillerie peut raconter les histoires de notre époque — celles des mondes virtuels devenus légendaires.",
+        "values": {
+            "v1Title": "L'Artisanat d'Exception",
+            "v1Desc": "Chaque pièce est façonnée à la main par nos maîtres artisans, héritiers d'un savoir-faire séculaire réinventé pour une nouvelle génération.",
+            "v2Title": "L'Inspiration Imaginaire",
+            "v2Desc": "Nos collections puisent dans les mythologies du jeu vidéo, du cinéma et de l'anime — transformées en objets d'art tangibles et précieux.",
+            "v3Title": "La Rareté Programmée",
+            "v3Desc": "Nos éditions limitées sont numérotées et certifiées. Posséder une pièce NT, c'est détenir un fragment d'un univers exclusif."
+        },
+        "quote": "Un bijou ne devrait pas seulement orner. Il devrait raconter qui vous êtes, les mondes que vous avez traversés, les batailles que vous avez menées.",
+        "quoteAuthor": "— Fondateur, NT Jewelry",
+        "historyTitle": "Notre Histoire",
+        "timeline": {
+            "t1": "Naissance de la vision NT Jewelry",
+            "t2": "Première collection 'Genesis' — 12 pièces uniques",
+            "t3": "Ouverture de l'atelier parisien",
+            "t4": "Lancement de l'Écrin Digital"
+        }
+    },
+    "game": {
+        "adventure": "L'Aventure",
+        "character": "Personnage",
+        "inventory": "Inventaire"
+    },
+    "crafting": {
+        "title": "L'Atelier de Création",
+        "subtitle": "Sélectionnez une recette pour forger votre destin.",
+        "cost": "Coût: {cost} G",
+        "forgeBtn": "FORGER L'OBJET",
+        "forgeFail": "La forge a échoué !",
+        "forgeFailDesc": "Le timing n'était pas bon. Vos matériaux sont perdus.",
+        "perfectHit": "COUP PARFAIT !",
+        "perfectHitDesc": "La qualité est garantie Légendaire ou plus !",
+        "addedToInventory": "Ajouté à l'inventaire !"
+    },
+    "forge": {
+        "title": "La Forge",
+        "readyHint": "Appuyez sur ESPACE ou touchez pour commencer",
+        "runningHint": "Arrêtez le curseur dans la zone dorée !",
+        "targetZone": "Zone Cible",
+        "perfect": "PARFAIT !",
+        "success": "SUCCÈS",
+        "fail": "RATÉ...",
+        "spaceKey": "ESPACE",
+        "orTouch": "ou touchez l'écran"
+    },
+    "lootReveal": {
+        "tapToReveal": "Touchez pour révéler",
+        "addToInventory": "Ajouter à l'inventaire",
+        "forgeAgain": "Forger encore"
+    }
+}

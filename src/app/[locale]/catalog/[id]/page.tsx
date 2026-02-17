@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { PageTransition } from "@/shared/lib/page-transition";
 import { Button } from "@/shared/ui/button";
 import { ArrowLeft, Heart, ShoppingBag, Shield, Truck, RotateCcw } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { use } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 const PRODUCTS: Record<string, { name: string; price: string; description: string; details: string[]; category: string }> = {
     "1": { name: "Anneau du Néant", price: "890 €", category: "Bagues", description: "Forgé dans l'obscurité entre les mondes, cet anneau capture l'essence du vide primordial. Son design organique évoque les fractales cosmiques aperçues aux confins de l'univers.", details: ["Or 18 carats noirci", "Diamant noir 0.5ct", "Taille ajustable", "Certificat d'authenticité"] },
@@ -19,6 +20,7 @@ const PRODUCTS: Record<string, { name: string; price: string; description: strin
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const product = PRODUCTS[id] || PRODUCTS["1"];
+    const t = useTranslations("product");
 
     return (
         <PageTransition>
@@ -27,7 +29,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <div className="container mx-auto px-4 pt-24 md:pt-8">
                     <Link href="/catalog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                         <ArrowLeft className="w-4 h-4" />
-                        Retour aux collections
+                        {t("backToCollections")}
                     </Link>
                 </div>
 
@@ -38,20 +40,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6 }}
+                            layoutId={`product-image-${id}`}
                         >
                             <div className="relative aspect-square bg-card rounded-lg overflow-hidden border border-white/5">
-                                {/* Dramatic lighting */}
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_rgba(196,164,132,0.15)_0%,_transparent_60%)]" />
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,_rgba(247,231,206,0.08)_0%,_transparent_50%)]" />
 
-                                {/* Placeholder */}
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="w-32 h-32 rounded-full border-2 border-dashed border-primary/20 flex items-center justify-center">
-                                        <span className="text-primary/30 text-sm font-serif italic">Photo à venir</span>
+                                        <span className="text-primary/30 text-sm font-serif italic">{t("photoSoon")}</span>
                                     </div>
                                 </div>
 
-                                {/* Wishlist */}
                                 <button className="absolute top-4 right-4 p-3 bg-black/40 backdrop-blur-sm rounded-full hover:bg-primary/20 transition-colors group">
                                     <Heart className="w-5 h-5 text-white/50 group-hover:text-primary transition-colors" />
                                 </button>
@@ -97,7 +97,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                                     onClick={() => toast.success(`"${product.name}" ajouté au panier`)}
                                 >
                                     <ShoppingBag className="w-5 h-5 mr-2" />
-                                    Ajouter au Panier
+                                    {t("addToCart")}
                                 </Button>
                                 <Button variant="outline" size="lg">
                                     <Heart className="w-5 h-5" />
@@ -107,9 +107,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                             {/* Trust badges */}
                             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
                                 {[
-                                    { icon: Shield, label: "Authentique" },
-                                    { icon: Truck, label: "Livraison offerte" },
-                                    { icon: RotateCcw, label: "Retour 30j" },
+                                    { icon: Shield, label: t("badges.authentic") },
+                                    { icon: Truck, label: t("badges.freeShipping") },
+                                    { icon: RotateCcw, label: t("badges.return30") },
                                 ].map(({ icon: Icon, label }, i) => (
                                     <div key={i} className="flex flex-col items-center gap-2 text-center">
                                         <Icon className="w-5 h-5 text-primary/60" />

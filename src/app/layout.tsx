@@ -1,9 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
-import { Toaster } from "sonner";
-import { BottomBar } from "@/features/navigation/bottom-bar";
-import { DesktopHeader } from "@/features/navigation/desktop-header";
-import { PWAInstallPrompt } from "@/components/pwa/InstallPrompt";
 import "./globals.css";
 import { cn } from "@/shared/lib/utils";
 
@@ -46,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html suppressHydrationWarning>
       <body
         className={cn(
           montserrat.className,
@@ -54,13 +50,7 @@ export default function RootLayout({
           "bg-background text-foreground antialiased min-h-screen flex flex-col selection:bg-primary/20 selection:text-primary"
         )}
       >
-        <DesktopHeader />
-        <main className="flex-1 flex flex-col md:pt-20 pb-20 md:pb-0">
-          {children}
-        </main>
-        <BottomBar />
-        <PWAInstallPrompt />
-        <Toaster position="top-center" richColors theme="dark" />
+        {children}
       </body>
     </html>
   );

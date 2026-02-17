@@ -4,26 +4,27 @@ import { useConfetti } from "@/shared/hooks/use-confetti";
 import { Button } from "@/shared/ui/button";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const { triggerConfetti } = useConfetti();
+  const t = useTranslations("hero");
+  const tc = useTranslations("common");
 
   useEffect(() => {
-    // Welcome toast
-    toast.success("Welcome to NT Jewelry!", {
-      description: "Experience luxury gaming interactions.",
+    toast.success(tc("welcome"), {
+      description: tc("welcomeDesc"),
     });
-  }, []);
+  }, [tc]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] p-8 text-center space-y-8">
       <div className="space-y-4">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          Level Up Your Style
+          {t("title")}
         </h1>
         <p className="text-muted-foreground text-lg max-w-md mx-auto">
-          Premium jewelry for the modern gamer. Crafted with precision, worn with pride.
+          {t("subtitle")}
         </p>
       </div>
 
@@ -33,10 +34,10 @@ export default function Home() {
           size="lg"
           className="rounded-full px-8 text-lg font-bold shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-all"
         >
-          Explore Collection
+          {t("cta")}
         </Button>
         <Button variant="outline" size="lg" className="rounded-full px-8">
-          About Us
+          {t("about")}
         </Button>
       </div>
 

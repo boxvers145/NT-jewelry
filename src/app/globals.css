@@ -49,37 +49,50 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  /* Luxury Light: Warm Ivory + Gold */
+  --background: #FAFAF7;
+  --foreground: #1A1A1A;
+
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+
+  /* Gold Primary (same as dark) */
+  --primary: #C4A484;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #F5F0EB;
+  --secondary-foreground: #1A1A1A;
+
+  --muted: #F5F0EB;
+  --muted-foreground: #6B6B6B;
+
+  --accent: #F5F0EB;
+  --accent-foreground: #8B7355;
+
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #E8E0D8;
+  --input: #E8E0D8;
+  --ring: #C4A484;
+
+  --chart-1: #C4A484;
+  --chart-2: #A88B6E;
+  --chart-3: #8C7358;
+  --chart-4: #F7E7CE;
+  --chart-5: #B8B8B8;
+
+  --sidebar: #FAFAF7;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #C4A484;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F5F0EB;
+  --sidebar-accent-foreground: #8B7355;
+  --sidebar-border: #E8E0D8;
+  --sidebar-ring: #C4A484;
 }
 
 /* High Jewelry Palette */
@@ -193,18 +206,38 @@
 
 /* Rarity Glow Effects */
 @keyframes rarity-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
 }
 
-.rarity-glow-poor { box-shadow: 0 0 6px rgba(156, 163, 175, 0.2); }
-.rarity-glow-common { box-shadow: 0 0 8px rgba(229, 231, 235, 0.2); }
-.rarity-glow-rare { box-shadow: 0 0 12px rgba(59, 130, 246, 0.3); }
-.rarity-glow-epic { box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); }
+.rarity-glow-poor {
+  box-shadow: 0 0 6px rgba(156, 163, 175, 0.2);
+}
+
+.rarity-glow-common {
+  box-shadow: 0 0 8px rgba(229, 231, 235, 0.2);
+}
+
+.rarity-glow-rare {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+}
+
+.rarity-glow-epic {
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
 .rarity-glow-legendary {
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
   animation: rarity-pulse 2s ease-in-out infinite;
 }
+
 .rarity-glow-unique {
   box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
   animation: rarity-pulse 1.5s ease-in-out infinite;
@@ -216,5 +249,26 @@
 }
 
 /* 3D card perspective (for item cards) */
-.perspective-1000 { perspective: 1000px; }
-.transform-style-3d { transform-style: preserve-3d; }
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* ─── God Ray (Loot Reveal) ───────────────────────────── */
+@keyframes god-ray-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.god-ray-spin {
+  animation: god-ray-spin 8s linear infinite;
+  border-radius: 50%;
+}

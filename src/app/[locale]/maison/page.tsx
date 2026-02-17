@@ -1,22 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PageTransition, StaggerItem } from "@/shared/lib/page-transition";
-
-const VALUES = [
-    { title: "L'Artisanat d'Exception", desc: "Chaque pièce est façonnée à la main par nos maîtres artisans, héritiers d'un savoir-faire séculaire réinventé pour une nouvelle génération." },
-    { title: "L'Inspiration Imaginaire", desc: "Nos collections puisent dans les mythologies du jeu vidéo, du cinéma et de l'anime — transformées en objets d'art tangibles et précieux." },
-    { title: "La Rareté Programmée", desc: "Nos éditions limitées sont numérotées et certifiées. Posséder une pièce NT, c'est détenir un fragment d'un univers exclusif." },
-];
-
-const TIMELINE = [
-    { year: "2024", event: "Naissance de la vision NT Jewelry" },
-    { year: "2024", event: "Première collection 'Genesis' — 12 pièces uniques" },
-    { year: "2025", event: "Ouverture de l'atelier parisien" },
-    { year: "2025", event: "Lancement de l'Écrin Digital" },
-];
+import { PageTransition } from "@/shared/lib/page-transition";
+import { useTranslations } from "next-intl";
 
 export default function MaisonPage() {
+    const t = useTranslations("maison");
+
+    const VALUES = [
+        { title: t("values.v1Title"), desc: t("values.v1Desc") },
+        { title: t("values.v2Title"), desc: t("values.v2Desc") },
+        { title: t("values.v3Title"), desc: t("values.v3Desc") },
+    ];
+
+    const TIMELINE = [
+        { year: "2024", event: t("timeline.t1") },
+        { year: "2024", event: t("timeline.t2") },
+        { year: "2025", event: t("timeline.t3") },
+        { year: "2025", event: t("timeline.t4") },
+    ];
+
     return (
         <PageTransition>
             <div className="min-h-screen">
@@ -29,14 +32,13 @@ export default function MaisonPage() {
                         transition={{ duration: 1 }}
                         className="container mx-auto px-4 text-center space-y-6 relative z-10"
                     >
-                        <span className="text-primary tracking-[0.3em] text-xs uppercase">La Maison</span>
+                        <span className="text-primary tracking-[0.3em] text-xs uppercase">{t("label")}</span>
                         <h1 className="text-4xl md:text-7xl font-serif font-bold leading-tight">
-                            Là où le luxe<br />
-                            <span className="text-primary">rencontre l'imaginaire</span>
+                            {t("heroTitle1")}<br />
+                            <span className="text-primary">{t("heroTitle2")}</span>
                         </h1>
                         <p className="text-muted-foreground max-w-xl mx-auto text-base md:text-lg leading-relaxed">
-                            NT Jewelry est née de la conviction que la haute joaillerie peut raconter
-                            les histoires de notre époque — celles des mondes virtuels devenus légendaires.
+                            {t("heroDesc")}
                         </p>
                     </motion.div>
                 </section>
@@ -76,10 +78,9 @@ export default function MaisonPage() {
                     >
                         <div className="text-6xl text-primary/30 font-serif">&ldquo;</div>
                         <blockquote className="text-2xl md:text-3xl font-serif italic leading-relaxed text-foreground/90">
-                            Un bijou ne devrait pas seulement orner. Il devrait raconter qui vous êtes,
-                            les mondes que vous avez traversés, les batailles que vous avez menées.
+                            {t("quote")}
                         </blockquote>
-                        <p className="text-primary tracking-widest text-sm uppercase pt-4">— Fondateur, NT Jewelry</p>
+                        <p className="text-primary tracking-widest text-sm uppercase pt-4">{t("quoteAuthor")}</p>
                     </motion.div>
                 </section>
 
@@ -91,13 +92,11 @@ export default function MaisonPage() {
                         viewport={{ once: true }}
                         className="text-3xl md:text-4xl font-serif font-bold text-center mb-16"
                     >
-                        Notre Histoire
+                        {t("historyTitle")}
                     </motion.h2>
 
                     <div className="max-w-lg mx-auto relative">
-                        {/* Vertical line */}
                         <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-border" />
-
                         <div className="space-y-10">
                             {TIMELINE.map((item, i) => (
                                 <motion.div
