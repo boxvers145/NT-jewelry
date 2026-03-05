@@ -12,6 +12,8 @@
         "profile": "Profil",
         "collections": "COLLECTIONS",
         "maison": "LA MAISON",
+        "redeem": "DÉBLOQUER",
+        "vault": "COFFRE",
         "backToSite": "Retour au site"
     },
     "common": {
@@ -130,5 +132,29 @@
         "tapToReveal": "Touchez pour révéler",
         "addToInventory": "Ajouter à l'inventaire",
         "forgeAgain": "Forger encore"
+    },
+    "redeem": {
+        "title": "Déverrouiller le Jumeau",
+        "subtitle": "Entrez le code d'authenticité de votre bijou physique pour débloquer sa version digitale.",
+        "inputPlaceholder": "CODE À 16 CARACTÈRES",
+        "scanButton": "Simuler le scan d'un QR code",
+        "simulateScanStart": "Simulation de scan de la caméra...",
+        "unlockAction": "DÉVERROUILLER",
+        "authenticating": "AUTHENTIFICATION...",
+        "unlocked": "AJOUTÉ AU COFFRE",
+        "successToast": "Votre pièce a été ajoutée à votre collection digitale souveraine.",
+        "helpText": "Le code se trouve sur le certificat d'authenticité accompagnant votre achat physique."
+    },
+    "collection": {
+        "title": "Mon Coffre",
+        "subtitle": "Votre collection personnelle de jumeaux numériques. Explorez chaque détail de vos pièces uniques en 3D.",
+        "emptyTitle": "Votre coffre est vide",
+        "emptySubtitle": "Déverrouillez un bijou pour le voir apparaître ici.",
+        "material": "Matériau",
+        "gem": "Gemme",
+        "rarity": "Rareté",
+        "owned": "Possédés",
+        "copies": "exemplaires",
+        "close": "Fermer"
     }
 }

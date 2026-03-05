@@ -23,6 +23,12 @@ export function DesktopHeader() {
                     <Link href="/maison" className="text-sm font-medium tracking-wide hover:text-primary transition-colors">
                         {t("maison")}
                     </Link>
+                    <Link href="/redeem" className="text-sm font-medium tracking-wide hover:text-primary transition-colors">
+                        {t("redeem", { fallback: "Code" })}
+                    </Link>
+                    <Link href="/collection" className="text-sm font-medium tracking-wide hover:text-primary transition-colors">
+                        {t("vault", { fallback: "Vault" })}
+                    </Link>
                     <div className="flex items-center gap-4 ml-8 border-l border-white/10 pl-8">
                         <Link href="/cart" className="relative group">
                             <ShoppingBag className="w-5 h-5 group-hover:text-primary transition-colors" />

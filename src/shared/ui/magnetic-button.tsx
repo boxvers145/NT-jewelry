@@ -6,7 +6,7 @@ import { cn } from "@/shared/lib/utils";
 
 import { HTMLMotionProps } from "framer-motion";
 
-interface MagneticButtonProps extends HTMLMotionProps<"div"> {
+interface MagneticButtonProps extends HTMLMotionProps<"button"> {
     children: React.ReactNode;
     strength?: number; // How much the button moves (default: 0.5)
 }
@@ -17,10 +17,10 @@ export function MagneticButton({
     strength = 0.5,
     ...props
 }: MagneticButtonProps) {
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLButtonElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (!ref.current) return;
         const { clientX, clientY } = e;
         const { left, top, width, height } = ref.current.getBoundingClientRect();
@@ -36,7 +36,7 @@ export function MagneticButton({
     };
 
     return (
-        <motion.div
+        <motion.button
             ref={ref}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
@@ -51,6 +51,6 @@ export function MagneticButton({
             {...props}
         >
             {children}
-        </motion.div>
+        </motion.button>
     );
 }

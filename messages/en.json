@@ -12,6 +12,8 @@
         "profile": "Profile",
         "collections": "COLLECTIONS",
         "maison": "THE HOUSE",
+        "redeem": "REDEEM",
+        "vault": "VAULT",
         "backToSite": "Back to site"
     },
     "common": {
@@ -130,5 +132,29 @@
         "tapToReveal": "Tap to reveal",
         "addToInventory": "Add to inventory",
         "forgeAgain": "Forge again"
+    },
+    "redeem": {
+        "title": "Unlock Digital Twin",
+        "subtitle": "Enter your physical piece's authenticity code to unlock its digital counterpart.",
+        "inputPlaceholder": "16-CHARACTER CODE",
+        "scanButton": "Simulate QR scan",
+        "simulateScanStart": "Simulating camera scan...",
+        "unlockAction": "UNLOCK",
+        "authenticating": "AUTHENTICATING...",
+        "unlocked": "ADDED TO VAULT",
+        "successToast": "Your piece has been added to your sovereign digital collection.",
+        "helpText": "The code is located on the certificate of authenticity accompanying your physical purchase."
+    },
+    "collection": {
+        "title": "My Vault",
+        "subtitle": "Your personal collection of digital twins. Explore every detail of your unique pieces in 3D.",
+        "emptyTitle": "Your vault is empty",
+        "emptySubtitle": "Unlock a jewelry piece to see it appear here.",
+        "material": "Material",
+        "gem": "Gemstone",
+        "rarity": "Rarity",
+        "owned": "Owned",
+        "copies": "copies",
+        "close": "Close"
     }
 }
